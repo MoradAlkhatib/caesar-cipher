@@ -34,6 +34,9 @@ def encrypt(text,k):
     return str(last_string)
 
 def decrypt(text,k):
+    """
+    this function tack a text and key  to decrypt encrypt function by key 
+    """
     # text = text.lower()
     if k > 25 :
         if k % 25 == 0 :
@@ -58,6 +61,9 @@ def decrypt(text,k):
     return last_string
 
 def count_words(text):
+    """
+     function tack text as an argument check about words if its an english word
+    """
     candidate_words = text.split()
     count = 0
     for i in candidate_words:
@@ -68,6 +74,9 @@ def count_words(text):
     return count
 
 def crack(encrypted):
+    """
+    function is make decrypt without key
+    """
     for i in range (0,26):
         text = decrypt(encrypted,i)
         percentage = int(count_words(text) / len(encrypted.split()) * 100)

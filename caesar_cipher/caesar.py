@@ -10,7 +10,7 @@ word_list = words.words()
 name_list = names.words()
 
 def encrypt(text,k):
-    # text = text.lower()
+    text = text.lower()
     if k > 25 :
         if k % 25 == 0 :
             k = 25
@@ -23,6 +23,9 @@ def encrypt(text,k):
     for words in arr_text:
         text_after_encrypt = ''
         for litters in words:
+            if re.match(r"\W", litters):
+                text_after_encrypt += litters
+                break
             if ord(litters) + k > 122 :
                 k = k - 26
             text_after_encrypt += chr(ord(litters)+k)
@@ -31,13 +34,13 @@ def encrypt(text,k):
         new_array.append(' ')
     last_string = ''
     last_string = last_string.join(new_array)
-    return str(last_string)
+    return str(last_string).strip()
 
 def decrypt(text,k):
     """
     this function tack a text and key  to decrypt encrypt function by key 
     """
-    # text = text.lower()
+    text = text.lower()
     if k > 25 :
         if k % 25 == 0 :
             k = 25
@@ -50,6 +53,9 @@ def decrypt(text,k):
     for words in arr_text:
         text_after_encrypt = ''
         for litters in words:
+            if re.match(r"\W", litters):
+                text_after_encrypt += litters
+                break
             if ord(litters) - k < 97 :
                 k =  k - 26 
             text_after_encrypt += chr(ord(litters)-k)
@@ -58,7 +64,7 @@ def decrypt(text,k):
         new_array.append(' ')
     last_string = ''
     last_string = last_string.join(new_array)
-    return last_string
+    return last_string.strip()
 
 def count_words(text):
     """
